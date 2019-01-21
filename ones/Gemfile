@@ -1,0 +1,11 @@
+source 'https://rubygems.org'
+
+gem 'ass_ole'
+gem 'rake', '~> 10.0'
+gem 'minitest'
+gem 'mocha'
+gem 'pry'
+
+gem 'ass_tests', :git => 'https://github.com/leoniv/ass_tests.git'
+gem 'ass_devel', :git => 'https://github.com/leoniv/ass_devel.git'
+gem 'ass_ole-rubify', :git => 'https://github.com/leoniv/ass_ole-rubify'

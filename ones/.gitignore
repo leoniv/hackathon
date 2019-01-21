@@ -1,0 +1,16 @@
+*.cf
+*.epf
+*.erf
+*tmp
+*~tmp/
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+/builds/
+*.builds

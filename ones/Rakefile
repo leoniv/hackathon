@@ -1,0 +1,71 @@
+require "rake/testtask"
+require 'ass_devel/rake/app_test_task'
+
+$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
+require 'hackathone'
+
+namespace :design do
+  desc 'Run design cycle'
+  task :run do |t|
+    app_spec = Hackathon::Application.specification
+    cycle = AssDevel::Cycles::Application::Design.new(app_spec) do |cycle|
+      cycle.bkup_data = true
+      cycle.bkup_path = nil # FIXME: ???'
+    end
+    cycle.run
+  end
+
+  desc 'Remove application build'
+  task :rm_build do |t|
+    app_spec = Hackathon::Application.specification
+    cycle = AssDevel::Cycles::Application::Design.new(app_spec)
+    cycle.rm_build
+  end
+
+  AssDevel::Rake::AppTestTask.new(:test) do |t|
+    app_spec = Hackathon::Application.specification
+
+    t.work_cycle = AssDevel::Cycles::Application::Design.new(app_spec)
+    t.app_name = 'HACKATHON'
+
+    t.libs << "test"
+    t.libs << "lib"
+    t.test_files = FileList['test/**/*_test.rb']
+  end
+
+  namespace :check do
+    desc 'Check app configuration'
+    task :config do
+      app_spec = Hackathon::Application.specification
+      cycle = AssDevel::Cycles::Application::Design.new(app_spec)
+      cycle.make_build
+      cmd = cycle.info_base.designer do
+        checkConfig do
+          _ConfigLogIntegrity
+          _IncorrectReferences
+          _ThinClient
+          _WebClient
+          _Server
+          _ExternalConnection
+          _ExternalConnectionServer
+          _ThickClientManagedApplication
+          _ThickClientServerManagedApplication
+          _ThickClientOrdinaryApplication
+          _ThickClientServerOrdinaryApplication
+          _DistributiveModules
+          _UnreferenceProcedures
+          _HandlersExistence
+          _EmptyHandlers
+          _ExtendedModulesCheck
+          _MobileAppClient
+          _MobileAppServer
+          _CheckUseModality
+          _UnsupportedFunctional
+          _AllExtensions
+        end
+      end
+
+      puts cmd.run.wait.result.assout
+    end
+  end
+end
