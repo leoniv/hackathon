@@ -3,7 +3,7 @@ namespace :src do
   task :init do
     $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
     require 'hackathon'
-    app_spec = Hackathone::Application.specification
+    app_spec = Hackathon::Application.specification
     app_spec.src.init_src
   end
 end

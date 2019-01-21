@@ -1,8 +1,8 @@
 require "rake/testtask"
 require 'ass_devel/rake/app_test_task'
 
-$LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
-require 'hackathone'
+$LOAD_PATH.unshift File.expand_path('lib', __dir__)
+require 'hackathon'
 
 namespace :design do
   desc 'Run design cycle'
@@ -23,7 +23,7 @@ namespace :design do
   end
 
   AssDevel::Rake::AppTestTask.new(:test) do |t|
-    app_spec = Hackathone::Application.specification
+    app_spec = Hackathon::Application.specification
 
     t.work_cycle = AssDevel::Cycles::Application::Design.new(app_spec)
     t.app_name = 'HACKATHON'

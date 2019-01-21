@@ -1,4 +1,4 @@
-module Hackathone
+module Hackathon
   VERSION = '0.0.0'.freeze
   require 'ass_devel'
 
