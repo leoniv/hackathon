@@ -23,7 +23,7 @@ namespace :design do
   end
 
   AssDevel::Rake::AppTestTask.new(:test) do |t|
-    app_spec = Hackathon::Application.specification
+    app_spec = Hackathone::Application.specification
 
     t.work_cycle = AssDevel::Cycles::Application::Design.new(app_spec)
     t.app_name = 'HACKATHON'

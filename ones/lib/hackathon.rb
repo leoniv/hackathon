@@ -3,8 +3,9 @@ module Hackathone
   require 'ass_devel'
 
   module Application
-    SRC_ROOT = File.expand_path('../src/hackathone.src', __dir__).freeze
-    RELEASE_DIR = File.expand_path('../releases/hackathone', __dir__).freeze
+    extend AssDevel::DSL::Application
+    SRC_ROOT = File.expand_path('../src', __dir__).freeze
+    RELEASE_DIR = File.expand_path('../releases', __dir__).freeze
     PLATFORM_REQUIRE = '~> 8.3.12.0'.freeze
 
     application :Хакатон do |app|
