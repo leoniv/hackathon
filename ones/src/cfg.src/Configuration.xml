@@ -135,6 +135,7 @@
 		</Properties>
 		<ChildObjects>
 			<Language>Русский</Language>
+			<CommonModule>Стек</CommonModule>
 		</ChildObjects>
 	</Configuration>
 </MetaDataObject>
